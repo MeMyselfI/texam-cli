@@ -1,0 +1,21 @@
+[
+  {"name":"de.agentsinaction.texam.Main","allDeclaredConstructors":true,"allPublicMethods":true},
+  {"name":"de.agentsinaction.texam.TexamCommand","allDeclaredConstructors":true,"allPublicMethods":true,"allDeclaredFields":true},
+  {"name":"de.agentsinaction.texam.config.Config","allDeclaredConstructors":true,"allPublicMethods":true,"allDeclaredFields":true},
+  {"name":"de.agentsinaction.texam.client.ApiClient","allDeclaredConstructors":true,"allPublicMethods":true},
+  {"name":"de.agentsinaction.texam.model.ResultWrapper","allDeclaredConstructors":true,"allPublicMethods":true,"allDeclaredFields":true,"allPublicFields":true},
+  {"name":"de.agentsinaction.texam.commands.LoginCommand","allDeclaredConstructors":true,"allPublicMethods":true,"allDeclaredFields":true},
+  {"name":"de.agentsinaction.texam.commands.ExamCommand","allDeclaredConstructors":true,"allPublicMethods":true,"allDeclaredFields":true},
+  {"name":"de.agentsinaction.texam.commands.ExamineeCommand","allDeclaredConstructors":true,"allPublicMethods":true,"allDeclaredFields":true},
+  {"name":"de.agentsinaction.texam.commands.ClientCommand","allDeclaredConstructors":true,"allPublicMethods":true,"allDeclaredFields":true},
+  {"name":"de.agentsinaction.texam.commands.LogCommand","allDeclaredConstructors":true,"allPublicMethods":true,"allDeclaredFields":true},
+  {"name":"de.agentsinaction.texam.commands.MessageCommand","allDeclaredConstructors":true,"allPublicMethods":true,"allDeclaredFields":true},
+  {"name":"de.agentsinaction.texam.commands.UserCommand","allDeclaredConstructors":true,"allPublicMethods":true,"allDeclaredFields":true},
+  {"name":"de.agentsinaction.texam.commands.PinCommand","allDeclaredConstructors":true,"allPublicMethods":true,"allDeclaredFields":true},
+  {"name":"de.agentsinaction.texam.commands.MediaCommand","allDeclaredConstructors":true,"allPublicMethods":true,"allDeclaredFields":true},
+  {"name":"de.agentsinaction.texam.commands.ConfCommand","allDeclaredConstructors":true,"allPublicMethods":true,"allDeclaredFields":true},
+  {"name":"de.agentsinaction.texam.commands.ServerCommand","allDeclaredConstructors":true,"allPublicMethods":true,"allDeclaredFields":true},
+  {"name":"com.fasterxml.jackson.databind.ObjectMapper","allDeclaredConstructors":true,"allPublicMethods":true},
+  {"name":"com.fasterxml.jackson.databind.node.ObjectNode","allDeclaredConstructors":true,"allPublicMethods":true},
+  {"name":"com.fasterxml.jackson.databind.node.ArrayNode","allDeclaredConstructors":true,"allPublicMethods":true}
+]
