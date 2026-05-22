@@ -9,20 +9,24 @@ A command-line interface for the **tEXAM server** — a platform for computer-ba
 
 ## Installation
 
-Releases (native binaries, no JVM required) are available at:
+Native binaries (no JVM required) — permanent direct-download links, always pointing to the latest release:
 
-**https://github.com/MeMyselfI/texam-cli/releases**
+| Platform | Permanent URL |
+|----------|---------------|
+| Linux (x86_64) | https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-linux-amd64 |
+| macOS (Apple Silicon) | https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-macos-arm64 |
+| Windows (x86_64) | https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-windows-amd64.exe |
 
-| Platform | Binary |
-|----------|--------|
-| Linux (x86_64) | `texam-linux-amd64` |
-| macOS (Apple Silicon) | `texam-macos-arm64` |
-| Windows (x86_64) | `texam-windows-amd64.exe` |
+All releases: https://github.com/MeMyselfI/texam-cli/releases
 
 ```bash
 # Linux / macOS
-chmod +x texam-linux-amd64
-mv texam-linux-amd64 /usr/local/bin/texam
+curl -fsSL https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-linux-amd64 -o texam
+chmod +x texam
+mv texam /usr/local/bin/texam
+
+# Windows (PowerShell)
+Invoke-WebRequest https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-windows-amd64.exe -OutFile texam.exe
 ```
 
 ## Quick Start
