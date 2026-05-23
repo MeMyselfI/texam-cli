@@ -36,7 +36,9 @@ chmod +x texam && mv texam /usr/local/bin/texam
 
 # macOS — GUI (Doppelklick im Finder)
 # texam-macos-arm64.app.zip herunterladen, entpacken, "tEXAM CLI.app" in Programme legen.
-# Beim ersten Start: Rechtsklick → Öffnen → Öffnen bestätigen (Gatekeeper-Einmalfreigabe).
+# Falls macOS "beschädigt" meldet, einmalig im Terminal ausführen:
+xattr -cr "/Applications/tEXAM CLI.app"
+# Danach: Rechtsklick → Öffnen → Öffnen bestätigen (Gatekeeper-Einmalfreigabe).
 
 # Windows (PowerShell)
 Invoke-WebRequest https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-windows-amd64.exe -OutFile texam.exe
