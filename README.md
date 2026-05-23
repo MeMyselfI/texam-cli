@@ -181,7 +181,7 @@ Requires Java 21 and Maven 3.9+.
 ```bash
 # Fat JAR (requires JVM)
 mvn package
-java -jar target/texam-cli-1.0.0-beta.jar exam list
+java -jar target/texam-cli-1.0.9.jar exam list
 
 # Native binary (requires GraalVM 21)
 mvn -Pnative package

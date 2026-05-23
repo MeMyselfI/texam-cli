@@ -14,7 +14,7 @@ import java.util.concurrent.Callable;
 
 @Command(
     name = "texam",
-    version = "texam-cli 1.0.0-beta",
+    version = "texam-cli 1.0.9",
     mixinStandardHelpOptions = true,
     description = {"CLI for the tEXAM server (computer-based exam management). Output is JSON by default.",
                    "@|bold,red WARNING: BETA SOFTWARE — USE AT YOUR OWN RISK.|@",
