@@ -17,5 +17,6 @@
   {"name":"de.agentsinaction.texam.commands.ServerCommand","allDeclaredConstructors":true,"allPublicMethods":true,"allDeclaredFields":true},
   {"name":"com.fasterxml.jackson.databind.ObjectMapper","allDeclaredConstructors":true,"allPublicMethods":true},
   {"name":"com.fasterxml.jackson.databind.node.ObjectNode","allDeclaredConstructors":true,"allPublicMethods":true},
-  {"name":"com.fasterxml.jackson.databind.node.ArrayNode","allDeclaredConstructors":true,"allPublicMethods":true}
+  {"name":"com.fasterxml.jackson.databind.node.ArrayNode","allDeclaredConstructors":true,"allPublicMethods":true},
+  {"name":"de.agentsinaction.texam.gui.GuiServer","allDeclaredConstructors":true,"allPublicMethods":true}
 ]

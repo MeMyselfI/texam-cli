@@ -1,9 +1,22 @@
 package de.agentsinaction.texam;
 
+import de.agentsinaction.texam.gui.GuiServer;
 import picocli.CommandLine;
 
 public class Main {
     public static void main(String[] args) {
+        // No terminal attached and no arguments → launched by double-click → GUI mode
+        if (System.console() == null && args.length == 0) {
+            String exe = ProcessHandle.current().info().command().orElse("");
+            try {
+                GuiServer.start(exe);
+            } catch (Exception e) {
+                System.err.println("{\"success\":false,\"error\":\"GUI failed: " + e.getMessage() + "\"}");
+                System.exit(1);
+            }
+            return;
+        }
+
         int exitCode = new CommandLine(new TexamCommand())
             .setExecutionExceptionHandler((ex, cmd, parseResult) -> {
                 String msg = ex.getMessage() != null ? ex.getMessage() : ex.getClass().getSimpleName();
