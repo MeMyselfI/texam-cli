@@ -71,23 +71,38 @@ public class GuiServer {
     private static void handleRun(HttpExchange ex, String exePath) throws IOException {
         JsonNode req = MAPPER.readTree(ex.getRequestBody().readAllBytes());
 
+        if (exePath == null || exePath.isBlank()) {
+            ObjectNode err = MAPPER.createObjectNode()
+                    .put("output", "Error: could not determine executable path.\nTry running 'texam --gui' from a terminal instead.")
+                    .put("exitCode", 1);
+            respond(ex, 200, err.toString());
+            return;
+        }
+
         List<String> args = new ArrayList<>();
         args.add(exePath);
         addArg(args, "--url",  req, "url");
         addArg(args, "--user", req, "user");
         addArg(args, "--pass", req, "pass");
         if (req.path("insecure").asBoolean(false)) args.add("--insecure");
-        args.add("--pretty"); // always pretty-print in GUI mode
+        args.add("--pretty");
 
         String command = req.path("command").asText("").trim();
-        args.addAll(splitArgs(command));
+        if (!command.isEmpty()) args.addAll(splitArgs(command));
 
-        ProcessBuilder pb = new ProcessBuilder(args);
-        pb.redirectErrorStream(true);
-        Process proc = pb.start();
-        String output = new String(proc.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
-        int exitCode = -1;
-        try { exitCode = proc.waitFor(); } catch (InterruptedException ignored) {}
+        String output;
+        int exitCode = 1;
+        try {
+            ProcessBuilder pb = new ProcessBuilder(args);
+            pb.redirectErrorStream(true);
+            Process proc = pb.start();
+            output = new String(proc.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+            try { exitCode = proc.waitFor(); } catch (InterruptedException ignored) {}
+        } catch (IOException e) {
+            output = "Failed to run command: " + e.getMessage()
+                    + "\nExecutable: " + exePath
+                    + "\nArgs: " + args.subList(1, args.size());
+        }
 
         ObjectNode result = MAPPER.createObjectNode()
                 .put("output",   output)
@@ -114,7 +129,10 @@ public class GuiServer {
 
     private static void addArg(List<String> args, String flag, JsonNode req, String field) {
         String val = req.path(field).asText("").trim();
-        if (!val.isEmpty()) args.add(flag + "=" + val);
+        if (!val.isEmpty()) {
+            args.add(flag);
+            args.add(val);
+        }
     }
 
     /** Split on whitespace, respecting single- and double-quoted segments. */
