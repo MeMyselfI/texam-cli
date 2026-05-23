@@ -13,16 +13,22 @@ Native binaries (no JVM required) — permanent direct-download links, always po
 
 | Platform | CLI (Terminal) | GUI (Doppelklick) |
 |----------|---------------|-------------------|
-| Linux (x86_64) | [texam-linux-amd64](https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-linux-amd64) | — |
+| Linux (x86_64) | [texam-linux-amd64](https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-linux-amd64) | [texam.desktop](https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam.desktop) |
 | macOS (Apple Silicon) | [texam-macos-arm64](https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-macos-arm64) | [texam-macos-arm64.app.zip](https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-macos-arm64.app.zip) |
 | Windows (x86_64) | [texam-windows-amd64.exe](https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-windows-amd64.exe) | selbe .exe |
 
 All releases: https://github.com/MeMyselfI/texam-cli/releases
 
 ```bash
-# Linux
+# Linux — CLI
 curl -fsSL https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-linux-amd64 -o texam
 chmod +x texam && mv texam /usr/local/bin/texam
+
+# Linux — GUI per Doppelklick (Desktop-Integration)
+curl -fsSL https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam.desktop -o texam.desktop
+cp texam.desktop ~/.local/share/applications/
+# Danach im App-Menü oder Dateimanager per Doppelklick startbar.
+# Alternativ direkt aus dem Terminal: texam --gui
 
 # macOS — CLI (Terminal)
 curl -fsSL https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-macos-arm64 -o texam
@@ -34,9 +40,10 @@ chmod +x texam && mv texam /usr/local/bin/texam
 
 # Windows (PowerShell)
 Invoke-WebRequest https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-windows-amd64.exe -OutFile texam.exe
+# Doppelklick auf die .exe öffnet die GUI direkt.
 ```
 
-> **Tipp:** Die GUI lässt sich auch aus dem Terminal starten: `texam --gui`
+> **Tipp:** Die GUI lässt sich auf allen Plattformen auch direkt aus dem Terminal starten: `texam --gui`
 
 ## Quick Start
 
