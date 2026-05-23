@@ -64,11 +64,45 @@ jobs:
         if: runner.os != 'macOS'
         run: upx --best target/${{ matrix.asset_name }}
 
+      - name: Create macOS .app bundle
+        if: runner.os == 'macOS'
+        run: |
+          mkdir -p tEXAM\ CLI.app/Contents/MacOS
+          cp target/texam-macos-arm64 tEXAM\ CLI.app/Contents/MacOS/texam
+          chmod +x tEXAM\ CLI.app/Contents/MacOS/texam
+          cat > tEXAM\ CLI.app/Contents/Info.plist << 'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>CFBundleExecutable</key>
+              <string>texam</string>
+              <key>CFBundleIdentifier</key>
+              <string>de.agentsinaction.texam</string>
+              <key>CFBundleName</key>
+              <string>tEXAM CLI</string>
+              <key>CFBundlePackageType</key>
+              <string>APPL</string>
+              <key>LSUIElement</key>
+              <true/>
+          </dict>
+          </plist>
+          EOF
+          zip -r target/texam-macos-arm64.app.zip tEXAM\ CLI.app
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.asset_name }}
           path: target/${{ matrix.asset_name }}
+          if-no-files-found: error
+
+      - name: Upload .app bundle (macOS)
+        if: runner.os == 'macOS'
+        uses: actions/upload-artifact@v4
+        with:
+          name: texam-macos-arm64-app
+          path: target/texam-macos-arm64.app.zip
           if-no-files-found: error
 
   release:
@@ -98,6 +132,7 @@ jobs:
           files: |
             artifacts/texam-linux-amd64/texam-linux-amd64
             artifacts/texam-macos-arm64/texam-macos-arm64
+            artifacts/texam-macos-arm64-app/texam-macos-arm64.app.zip
             artifacts/texam-windows-amd64.exe/texam-windows-amd64.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
