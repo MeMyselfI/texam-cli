@@ -98,19 +98,24 @@ public class GuiServer {
 
         List<String> args = new ArrayList<>();
         args.add(exePath);
-        addArg(args, "--url",  req, "url");
-        addArg(args, "--user", req, "user");
-        addArg(args, "--pass", req, "pass");
-        if (req.path("insecure").asBoolean(false)) args.add("--insecure");
         args.add("--table");
 
         String command = req.path("command").asText("").trim();
         if (!command.isEmpty()) args.addAll(splitArgs(command));
 
+        String url  = req.path("url").asText("").trim();
+        String user = req.path("user").asText("").trim();
+        String pass = req.path("pass").asText("").trim();
+        boolean insecure = req.path("insecure").asBoolean(false);
+
         String output;
         int exitCode = 1;
         try {
             ProcessBuilder pb = new ProcessBuilder(args);
+            if (!url.isEmpty())  pb.environment().put("TEXAM_URL",      url);
+            if (!user.isEmpty()) pb.environment().put("TEXAM_USER",     user);
+            if (!pass.isEmpty()) pb.environment().put("TEXAM_PASSWORD", pass);
+            if (insecure)        pb.environment().put("TEXAM_INSECURE", "true");
             pb.redirectErrorStream(true);
             Process proc = pb.start();
             output = new String(proc.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
@@ -143,13 +148,6 @@ public class GuiServer {
     }
 
     // --- helpers ---
-
-    private static void addArg(List<String> args, String flag, JsonNode req, String field) {
-        String val = req.path(field).asText("").trim();
-        if (!val.isEmpty()) {
-            args.add(flag + "=" + val);
-        }
-    }
 
     /** Split on whitespace, respecting single- and double-quoted segments. */
     private static List<String> splitArgs(String s) {
