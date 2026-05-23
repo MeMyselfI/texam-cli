@@ -11,23 +11,32 @@ A command-line interface for the **tEXAM server** — a platform for computer-ba
 
 Native binaries (no JVM required) — permanent direct-download links, always pointing to the latest release:
 
-| Platform | Permanent URL |
-|----------|---------------|
-| Linux (x86_64) | https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-linux-amd64 |
-| macOS (Apple Silicon) | https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-macos-arm64 |
-| Windows (x86_64) | https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-windows-amd64.exe |
+| Platform | CLI (Terminal) | GUI (Doppelklick) |
+|----------|---------------|-------------------|
+| Linux (x86_64) | [texam-linux-amd64](https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-linux-amd64) | — |
+| macOS (Apple Silicon) | [texam-macos-arm64](https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-macos-arm64) | [texam-macos-arm64.app.zip](https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-macos-arm64.app.zip) |
+| Windows (x86_64) | [texam-windows-amd64.exe](https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-windows-amd64.exe) | selbe .exe |
 
 All releases: https://github.com/MeMyselfI/texam-cli/releases
 
 ```bash
-# Linux / macOS
+# Linux
 curl -fsSL https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-linux-amd64 -o texam
-chmod +x texam
-mv texam /usr/local/bin/texam
+chmod +x texam && mv texam /usr/local/bin/texam
+
+# macOS — CLI (Terminal)
+curl -fsSL https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-macos-arm64 -o texam
+chmod +x texam && mv texam /usr/local/bin/texam
+
+# macOS — GUI (Doppelklick im Finder)
+# texam-macos-arm64.app.zip herunterladen, entpacken, "tEXAM CLI.app" in Programme legen.
+# Beim ersten Start: Rechtsklick → Öffnen → Öffnen bestätigen (Gatekeeper-Einmalfreigabe).
 
 # Windows (PowerShell)
 Invoke-WebRequest https://github.com/MeMyselfI/texam-cli/releases/latest/download/texam-windows-amd64.exe -OutFile texam.exe
 ```
+
+> **Tipp:** Die GUI lässt sich auch aus dem Terminal starten: `texam --gui`
 
 ## Quick Start
 
